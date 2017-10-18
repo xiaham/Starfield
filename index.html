@@ -1,11 +1,4 @@
-<!DOCTYPE html><html lang="en">
-	<head>
-		<title>Starfield of CodingLand</title>
-    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"></script>
-    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/addons/p5.dom.js"></script>
-    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/addons/p5.sound.min.js"></script>
-
-    <script language="javascript">var stars = [];
+var stars = [];
 var speed = 10;
 
 var starcount = 0;
@@ -13,9 +6,7 @@ var starcount = 0;
 var mx;
 var my;
 
-	    
-// 설명
-	    
+//  설명
 var outroString ="";
 var globalSpeed = 40; // 수가 작을수록 = 더 긴 시간
 var initDelay = 10000; 
@@ -26,14 +17,14 @@ var whitescreen = false;
 var compwhite = false;
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  if (window.innerWidth >= window.innerHeight) 
-  {
+  if (window.innerWidth >= window.innerHeight) {
     starcount = width / 3;
   } else {
     starcount = height / 3;
   }
   for (var i = 0; i < starcount; i ++) {
-    stars[i] = new Star();}
+    stars[i] = new Star();
+  }
 }
 
 function draw() {
@@ -41,20 +32,22 @@ function draw() {
   if (mouseX <= (width/2) - 10) {
     speed = map(mouseX, 0, (width/2) - 10, 0, 75);
   } else if (mouseX >= (width/2) + 10) {
-    speed = map(mouseX, (width/2) + 10, width, 75, 0); }
+    speed = map(mouseX, (width/2) + 10, width, 75, 0);
 
-  if 
-	  (
-		  mouseX > (width/2) - 30 &&
+  }
+
+  if (
+    mouseX > (width/2) - 30 &&
     mouseX < (width/2) + 30 &&
     mouseY > (height/2) - 30 &&
     mouseY < (height/2) + 30 &&
-    whitescreen == false) 
-  {
+    whitescreen == false
+  ) {
     speed += 2;
-     if (speed > 500) 
-     {speed = 500;
-       whitescreen = true;}
+     if (speed > 500) {
+       speed = 500;
+       whitescreen = true;
+     }
   }
   background(0);
   translate(mouseX, mouseY);
@@ -63,30 +56,21 @@ function draw() {
     stars[i].show();
   }
   pop();
-	
-  // 화이트스크린의 값이 참이라면 실행
-	
-	if (whitescreen) 
-  {
-    if (whiteness < 255) 
-    {
-      whiteness += 2.5;} else if(compwhite == false) 
-    {
+  // rect(width/2,height/2,2,2);
+  if (whitescreen) {
+    if (whiteness < 255) {
+      whiteness += 2.5;
+    } else if(compwhite == false) {
       compwhite = true;
-      TextAni("
-                 빠르다
-	      
-	     ");
+      TextAni("빠르다");
     }
 
     noStroke();
     fill(255, whiteness);
     rect(0, 0, width, height);
 
-    if (compwhite) 
-    {
-      if (opa < 255) 
-      {
+    if (compwhite) {
+      if (opa < 255) {
         opa += 2.5;
       }
       fill(0, opa);
@@ -124,13 +108,9 @@ function Star() {
     fill(255);
     noStroke();
 
-	  
-	  
     var sx = map(this.x / this.z, 0, 1, 0, width);
     var sy = map(this.y / this.z, 0, 1, 0, height);
 
-	  
-	  
     var r = map(this.z, 0, width, 6, 0);
     if (this.showCircle) {
       ellipse(sx, sy, r, r);
@@ -143,65 +123,46 @@ function Star() {
     stroke(255);
     line(px, py, sx ,sy);
 
-  
   }
 }
 
 
-	    
-	    
-	    
-	    
-
-
-		    
-function TextAni (string ) { //스트링=문자열
-	var startStr =  0 ; // 문자열 처리
-    var strLen =  string.length; // 문자열 길이
+//스트링=문자열
+function TextAni(string) {
+    var startStr = 0; // 문자열 처리
+    var strLen = string.length; // 문자열 길이
     var inStr = string; // 초기 문자열
-    var ensString =  " " ; // 앙상블 문자열
-    strAnTo (startStr, strLen, inStr, ensString, initDelay);
+    var ensString = "";
+    strAnTo(startStr, strLen, inStr, ensString, initDelay);
+
 }
-function  strAnTo ( startStr , strLen , inStr , ensString , ToDur ) 
-		    { 
+function strAnTo(startStr, strLen, inStr, ensString, ToDur) { 
     var startStrAni = startStr; // 문자열 처리
     var strLenAni = strLen; // 문자열 길이
     var inStrAni = inStr; // 초기 문자열
-    var ensStringAni = ensString; // 앙상블 문자열
-		    
-	
-	
-	
-    var strAnIt = setTimeout(function () 
-			     {
+    var ensStringAni = ensString; 
+    var strAnIt = setTimeout(function () {
         if (startStrAni <= strLenAni) {
             startStrAni ++;
             ensStringAni = inStrAni.substr(0, startStrAni);
             outroString = inStrAni.substr(0, startStrAni);
             if (inStrAni.charAt(startStrAni) == ",") {
                 strAnTo(startStrAni, strLenAni, inStrAni, ensStringAni, 2000);
-            } 
-		else if (inStrAni.charAt(startStrAni) == ".") {
+            } else if (inStrAni.charAt(startStrAni) == ".") {
                 strAnTo(startStrAni, strLenAni, inStrAni, ensStringAni, 3500);
-            } 
-		else if (inStrAni.charAt(startStrAni) == "?") {
+            } else if (inStrAni.charAt(startStrAni) == "?") {
                 strAnTo(startStrAni, strLenAni, inStrAni, ensStringAni, 2500);
-            } 
-		else if (inStrAni.charAt(startStrAni) == "!") {
+            } else if (inStrAni.charAt(startStrAni) == "!") {
                 strAnTo(startStrAni, strLenAni, inStrAni, ensStringAni, 2200);
-            } 
-		else if (inStrAni.charAt(startStrAni) == " ") {
+            } else if (inStrAni.charAt(startStrAni) == " ") {
                 strAnTo(startStrAni, strLenAni, inStrAni, ensStringAni, 1500);
-            } 
-		else {
+            } else {
                 strAnTo(startStrAni, strLenAni, inStrAni, ensStringAni, 1000);
             }
-		
         }
     },ToDur/globalSpeed)
 }
-	    
-	    
+
 	    
 	    
 	    
