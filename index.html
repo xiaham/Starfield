@@ -1,4 +1,9 @@
-var stars = [];
+<!DOCTYPE html><html lang="en"><head><title>Starfield with bonus by undefined</title>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/addons/p5.dom.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/addons/p5.sound.min.js"></script>
+
+    <script language="javascript">var stars = [];
 var speed = 10;
 
 var starcount = 0;
@@ -6,10 +11,10 @@ var starcount = 0;
 var mx;
 var my;
 
-//  설명
+// Text trans stuff
 var outroString ="";
-var globalSpeed = 40; // 수가 작을수록 = 더 긴 시간
-var initDelay = 10000; 
+var globalSpeed = 40; // smaller = longer duration
+var initDelay = 10000; // in ms
 
 var whiteness = 0;
 var opa = 0;
@@ -62,7 +67,7 @@ function draw() {
       whiteness += 2.5;
     } else if(compwhite == false) {
       compwhite = true;
-      TextAni("빠르다");
+      TextAni("Wow there!! you went a little too fast...");
     }
 
     noStroke();
@@ -127,20 +132,20 @@ function Star() {
 }
 
 
-//스트링=문자열
+
 function TextAni(string) {
-    var startStr = 0; // 문자열 처리
-    var strLen = string.length; // 문자열 길이
-    var inStr = string; // 초기 문자열
-    var ensString = "";
+    var startStr = 0; //string process
+    var strLen = string.length; //string length
+    var inStr = string; //initial string
+    var ensString = ""; //ensemble string
     strAnTo(startStr, strLen, inStr, ensString, initDelay);
 
 }
-function strAnTo(startStr, strLen, inStr, ensString, ToDur) { 
-    var startStrAni = startStr; // 문자열 처리
-    var strLenAni = strLen; // 문자열 길이
-    var inStrAni = inStr; // 초기 문자열
-    var ensStringAni = ensString; 
+function strAnTo(startStr, strLen, inStr, ensString, ToDur) { //string antimate timeout
+    var startStrAni = startStr; //string process
+    var strLenAni = strLen; //string length
+    var inStrAni = inStr; //initial string
+    var ensStringAni = ensString; //ensemble string
     var strAnIt = setTimeout(function () {
         if (startStrAni <= strLenAni) {
             startStrAni ++;
@@ -162,10 +167,6 @@ function strAnTo(startStr, strLen, inStr, ensString, ToDur) {
         }
     },ToDur/globalSpeed)
 }
-
-	    
-	    
-	    
 </script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -184,12 +185,7 @@ canvas {
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
 }
-</style>
-	
-    <body>
-    <audio autoplay loop>
-    <source src="Landslide.mp3" type="audio/ogg" />
-    </audio>
+</style><body>
 
   
 <style>
@@ -215,9 +211,4 @@ canvas {
 
 		window.open(window.location.protocol + '//' + window.location.host + '/editor#?sketch=' + projectID )
 	}
-	
-	
-</script>
-	
-	</body>
-</html>
+</script></body></html>
