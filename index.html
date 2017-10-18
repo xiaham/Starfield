@@ -11,10 +11,10 @@ var starcount = 0;
 var mx;
 var my;
 
-// Text trans stuff
+// 설명
 var outroString ="";
-var globalSpeed = 40; // smaller = longer duration
-var initDelay = 10000; // in ms
+var globalSpeed = 40; // 작을수록 = 긴시간
+var initDelay = 10000; 
 
 var whiteness = 0;
 var opa = 0;
@@ -61,13 +61,13 @@ function draw() {
     stars[i].show();
   }
   pop();
-  // rect(width/2,height/2,2,2);
+ 
   if (whitescreen) {
     if (whiteness < 255) {
       whiteness += 2.5;
     } else if(compwhite == false) {
       compwhite = true;
-      TextAni("Wow there!! you went a little too fast...");
+      TextAni("빠르다");
     }
 
     noStroke();
@@ -133,19 +133,19 @@ function Star() {
 
 
 
-function TextAni(string) {
-    var startStr = 0; //string process
-    var strLen = string.length; //string length
-    var inStr = string; //initial string
-    var ensString = ""; //ensemble string
+function TextAni(string) {//스트링=문자열
+    var startStr = 0; // 문자열 처리
+    var strLen = string.length; // 문자열 길이
+    var inStr = string; // 초기 문자열
+    var ensString = ""; //앙상블문자열
     strAnTo(startStr, strLen, inStr, ensString, initDelay);
 
 }
-function strAnTo(startStr, strLen, inStr, ensString, ToDur) { //string antimate timeout
-    var startStrAni = startStr; //string process
-    var strLenAni = strLen; //string length
-    var inStrAni = inStr; //initial string
-    var ensStringAni = ensString; //ensemble string
+function strAnTo(startStr, strLen, inStr, ensString, ToDur) {
+    var startStrAni = startStr; // 문자열 처리
+    var strLenAni = strLen; // 문자열 길이
+    var inStrAni = inStr; // 초기 문자열
+    var ensStringAni = ensString; //앙상블문자열
     var strAnIt = setTimeout(function () {
         if (startStrAni <= strLenAni) {
             startStrAni ++;
@@ -185,9 +185,12 @@ canvas {
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
 }
-</style><body>
+</style>
 
-  
+  <body>
+     <audio autoplay loop>
+    <source src="Landslide.mp3" type="audio/ogg" />
+    </audio>
 <style>
 	.toppa {
 		z-index:100; position:absolute; opacity:0.8;margin:10px;padding:5px; background-color:rgba(20, 20, 20, 0.2);
